@@ -121,7 +121,7 @@ noinst_LIBRARIES = libmodules.a
 
 libmodules_a_SOURCES = square.c square.h ADSR.c ADSR.h biquad.c biquad.h	\
 	 biquad_f.c biquad_f.h impulse.c impulse.h DFOF.c DFOF.h \
-	 mixer.c mixer.h delay.h delay.c
+	 mixer.c mixer.h delay.h delay.c vibro.c vibro.h
 
 subdir = src/modules
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -134,7 +134,7 @@ libmodules_a_AR = $(AR) cru
 libmodules_a_LIBADD =
 am_libmodules_a_OBJECTS = square.$(OBJEXT) ADSR.$(OBJEXT) \
 	biquad.$(OBJEXT) biquad_f.$(OBJEXT) impulse.$(OBJEXT) \
-	DFOF.$(OBJEXT) mixer.$(OBJEXT) delay.$(OBJEXT)
+	DFOF.$(OBJEXT) mixer.$(OBJEXT) delay.$(OBJEXT) vibro.$(OBJEXT)
 libmodules_a_OBJECTS = $(am_libmodules_a_OBJECTS)
 
 DEFAULT_INCLUDES =  -I. -I$(srcdir) -I$(top_builddir)/src
@@ -143,7 +143,8 @@ am__depfiles_maybe = depfiles
 @AMDEP_TRUE@DEP_FILES = ./$(DEPDIR)/ADSR.Po ./$(DEPDIR)/DFOF.Po \
 @AMDEP_TRUE@	./$(DEPDIR)/biquad.Po ./$(DEPDIR)/biquad_f.Po \
 @AMDEP_TRUE@	./$(DEPDIR)/delay.Po ./$(DEPDIR)/impulse.Po \
-@AMDEP_TRUE@	./$(DEPDIR)/mixer.Po ./$(DEPDIR)/square.Po
+@AMDEP_TRUE@	./$(DEPDIR)/mixer.Po ./$(DEPDIR)/square.Po \
+@AMDEP_TRUE@	./$(DEPDIR)/vibro.Po
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
 CCLD = $(CC)
@@ -185,6 +186,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/impulse.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/mixer.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/square.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/vibro.Po@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	if $(COMPILE) -MT $@ -MD -MP -MF "$(DEPDIR)/$*.Tpo" \

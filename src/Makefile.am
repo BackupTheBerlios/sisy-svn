@@ -14,7 +14,8 @@ instru_parse.c instru_parse.h			\
 list.c list.h					\
 obj.c obj.h					\
 math.c math.h					\
-debug.h misc.h
+debug.h misc.h					\
+oscillators.c oscillators.h
 
 #trigger.c trigger.h
 

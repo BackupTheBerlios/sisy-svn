@@ -10,6 +10,7 @@
 #include "modules/DFOF.h"
 #include "modules/ADSR.h"
 #include "modules/delay.h"
+#include "modules/vibro.h"
 
 
 obj_c*
@@ -94,6 +95,7 @@ module_symbole_t module_symtab[]={
     {"DFOF",     module_DFOF_create},
     {"ADSR",     module_ADSR_create},
     {"delay",    module_delay_create},
+    {"vibro",    module_vibro_create},
     {0, 0}
 };
 

@@ -146,7 +146,7 @@ ADSR_next_state(module_ADSR_t *ADSR)
 }
 
 
-int
+static int
 ref_callback(module_ADSR_t *ADSR)
 {
      if(ADSR->IO.trigger)
@@ -156,7 +156,7 @@ ref_callback(module_ADSR_t *ADSR)
 }
 
 
-int
+static int
 trigger_callback(module_ADSR_t *ADSR)
 {
      if(ADSR->IO.trigger)

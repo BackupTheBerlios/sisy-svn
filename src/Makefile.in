@@ -133,7 +133,8 @@ instru_parse.c instru_parse.h			\
 list.c list.h					\
 obj.c obj.h					\
 math.c math.h					\
-debug.h misc.h
+debug.h misc.h					\
+oscillators.c oscillators.h
 
 
 
@@ -156,7 +157,8 @@ am_sisy_OBJECTS = sisy-parse.$(OBJEXT) sisy-lex.$(OBJEXT) \
 	sisy-sisy.$(OBJEXT) sisy-bank.$(OBJEXT) sisy-instru.$(OBJEXT) \
 	sisy-module.$(OBJEXT) sisy-timestamp.$(OBJEXT) \
 	sisy-instru_parse.$(OBJEXT) sisy-list.$(OBJEXT) \
-	sisy-obj.$(OBJEXT) sisy-math.$(OBJEXT)
+	sisy-obj.$(OBJEXT) sisy-math.$(OBJEXT) \
+	sisy-oscillators.$(OBJEXT)
 sisy_OBJECTS = $(am_sisy_OBJECTS)
 sisy_DEPENDENCIES = modules/libmodules.a
 sisy_LDFLAGS =
@@ -172,8 +174,9 @@ am__depfiles_maybe = depfiles
 @AMDEP_TRUE@	./$(DEPDIR)/sisy-instru_parse.Po \
 @AMDEP_TRUE@	./$(DEPDIR)/sisy-lex.Po ./$(DEPDIR)/sisy-list.Po \
 @AMDEP_TRUE@	./$(DEPDIR)/sisy-math.Po ./$(DEPDIR)/sisy-module.Po \
-@AMDEP_TRUE@	./$(DEPDIR)/sisy-obj.Po ./$(DEPDIR)/sisy-parse.Po \
-@AMDEP_TRUE@	./$(DEPDIR)/sisy-sisy.Po \
+@AMDEP_TRUE@	./$(DEPDIR)/sisy-obj.Po \
+@AMDEP_TRUE@	./$(DEPDIR)/sisy-oscillators.Po \
+@AMDEP_TRUE@	./$(DEPDIR)/sisy-parse.Po ./$(DEPDIR)/sisy-sisy.Po \
 @AMDEP_TRUE@	./$(DEPDIR)/sisy-timestamp.Po
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
@@ -271,6 +274,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/sisy-math.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/sisy-module.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/sisy-obj.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/sisy-oscillators.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/sisy-parse.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/sisy-sisy.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/sisy-timestamp.Po@am__quote@
@@ -626,6 +630,28 @@ sisy-math.obj: math.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	depfile='$(DEPDIR)/sisy-math.Po' tmpdepfile='$(DEPDIR)/sisy-math.TPo' @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(sisy_CFLAGS) $(CFLAGS) -c -o sisy-math.obj `if test -f 'math.c'; then $(CYGPATH_W) 'math.c'; else $(CYGPATH_W) '$(srcdir)/math.c'; fi`
+
+sisy-oscillators.o: oscillators.c
+@am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(sisy_CFLAGS) $(CFLAGS) -MT sisy-oscillators.o -MD -MP -MF "$(DEPDIR)/sisy-oscillators.Tpo" \
+@am__fastdepCC_TRUE@	  -c -o sisy-oscillators.o `test -f 'oscillators.c' || echo '$(srcdir)/'`oscillators.c; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/sisy-oscillators.Tpo" "$(DEPDIR)/sisy-oscillators.Po"; \
+@am__fastdepCC_TRUE@	else rm -f "$(DEPDIR)/sisy-oscillators.Tpo"; exit 1; \
+@am__fastdepCC_TRUE@	fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='oscillators.c' object='sisy-oscillators.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	depfile='$(DEPDIR)/sisy-oscillators.Po' tmpdepfile='$(DEPDIR)/sisy-oscillators.TPo' @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(sisy_CFLAGS) $(CFLAGS) -c -o sisy-oscillators.o `test -f 'oscillators.c' || echo '$(srcdir)/'`oscillators.c
+
+sisy-oscillators.obj: oscillators.c
+@am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(sisy_CFLAGS) $(CFLAGS) -MT sisy-oscillators.obj -MD -MP -MF "$(DEPDIR)/sisy-oscillators.Tpo" \
+@am__fastdepCC_TRUE@	  -c -o sisy-oscillators.obj `if test -f 'oscillators.c'; then $(CYGPATH_W) 'oscillators.c'; else $(CYGPATH_W) '$(srcdir)/oscillators.c'; fi`; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/sisy-oscillators.Tpo" "$(DEPDIR)/sisy-oscillators.Po"; \
+@am__fastdepCC_TRUE@	else rm -f "$(DEPDIR)/sisy-oscillators.Tpo"; exit 1; \
+@am__fastdepCC_TRUE@	fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='oscillators.c' object='sisy-oscillators.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	depfile='$(DEPDIR)/sisy-oscillators.Po' tmpdepfile='$(DEPDIR)/sisy-oscillators.TPo' @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(sisy_CFLAGS) $(CFLAGS) -c -o sisy-oscillators.obj `if test -f 'oscillators.c'; then $(CYGPATH_W) 'oscillators.c'; else $(CYGPATH_W) '$(srcdir)/oscillators.c'; fi`
 
 .l.c:
 	$(LEXCOMPILE) `test -f $< || echo '$(srcdir)/'`$<
