@@ -14,11 +14,13 @@ audio_alsa_quit(audio_t *audio)
 int
 audio_alsa_write(audio_t *audio, short int *buffer, int size)
 {
-  ck_err(snd_pcm_writei ((snd_pcm_t*)audio->data.p, buffer, size) != size);
-
+    int err;
+    if((err = snd_pcm_writei ((snd_pcm_t*)audio->data.p, buffer, size)) != size)
+	if (err < 0) {
+	    printf("ALSA: Error %s\n", snd_strerror(err));
+	    return -1;
+	}
   return 0;
- error:
-  return -1;
 }
 
 int

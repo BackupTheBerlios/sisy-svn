@@ -1,4 +1,4 @@
-/*
+/*  ref pour le train pour la conf JDL : RRWBMA
  *  Copyright (C) 2001 Frederic Motte
  *
  *  This program is free software; you can redistribute it and/or modify
@@ -77,7 +77,8 @@ audio_write (audio_t *audio, buffer_t *buffer)
 	    sc_buffer[i] = si;
 	}
 
-    ck_err(audio->write(audio, sc_buffer, buffer->size) < 0);
+    if(audio->write(audio, sc_buffer, buffer->size) < 0)
+	printf("Houlalala, audio->write est pas content...\n");
 
     smpl_timestamp_add(buffer->size);
 
@@ -122,6 +123,7 @@ buffer_zero(buffer_t *buffer)
     return -1;
 }
 
+
 int
 is_buffer_flat(buffer_t *buffer)
 {
@@ -138,6 +140,7 @@ is_buffer_flat(buffer_t *buffer)
   error:
     return -1;
 }
+
 
 int
 buffer_mix(buffer_t *src , buffer_t *dst)

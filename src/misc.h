@@ -86,9 +86,8 @@ typedef long  s64_t;	/* must be 4 octets */
 
 #define Free(mem) (free(mem))
 #define Calloc(size, nbr) (calloc(size, nbr))
-void* Malloc(int size);
-
-//#define Malloc(size) (calloc(size, 1))
+//void* Malloc(int size);
+#define Malloc(size) (calloc(size, 1))
 #define Talloc(type) ((type*)Calloc(sizeof(type), 1))
 #define Xalloc(type, nbr) ((type*)Calloc(sizeof(type), nbr))
 

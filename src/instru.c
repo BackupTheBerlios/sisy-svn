@@ -261,7 +261,7 @@ instru_voice_midi_process(instru_voice_t * iv)
 		       MIDI_MSG_NOTE(&mmsg), MIDI_MSG_VELO(&mmsg));
 	    iv->timeout = SAMPLE_RATE*2;//just 2 sec.
 	    voice->IO.note_trigger=0;
-	    voice->IO.velo = MIDI_MSG_VELO(&mmsg)<<8;//fxd:15
+	    voice->IO.velo = -MIDI_MSG_VELO(&mmsg)<<8;//fxd:15
 	    voice->IO.note = MIDI_MSG_NOTE(&mmsg);//meaning full for global *voice*
 	    break;
 	default:
@@ -340,7 +340,8 @@ instru_midi_init(instru_midi_t * im)
 int
 instru_midi_mux_init(instru_midi_t * im, int nb_voices)
 {
-    dbg(DBG_MIDI, "instru_midi_mux_init");
+    if (dbg_filter & DBG_MIDI)
+	printf("instru_midi_mux_init: nb_voices: %d\n", nb_voices);
     ck_err(!(im->mmux = midi_mux_create(nb_voices, MIDI_FLAG_RT)));
 
     return 0;
@@ -447,7 +448,7 @@ instru_prog(instru_t * instru, char prog)
     instru->midi.IO.program = prog;
     ck_err(!(name = prog_name(prog)));
     ck_err(!(name = instru_file_name(name, file_name, FILE_NAME_SIZE)));
-//  if (dbg_filter & DBG_MIDI)
+  if (dbg_filter & DBG_MIDI)
 	printf("instru_prog: prog #%x, file: %s\n", prog, name);
     //   abort();
     ck_err(instru_parse(instru, name) < 0);

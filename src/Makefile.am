@@ -20,5 +20,5 @@ debug.h misc.h
 
 AM_YFLAGS =  -d
 
-sisy_LDADD=@LIBSNDFILE_LIBS@ @LIBFMS_LIBS@ modules/libmodules.a
-sisy_CFLAGS=@LIBSNDFILE_CFLAGS@ @LIBFMS_CFLAGS@
+sisy_LDADD=@LIBSNDFILE_LIBS@ @SIMILI_LIBS@ modules/libmodules.a
+sisy_CFLAGS=@LIBSNDFILE_CFLAGS@ @SIMILI_CFLAGS@

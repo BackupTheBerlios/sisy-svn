@@ -2,14 +2,11 @@ SImple SYnthetiser
 ------------------
 
 FEATURES:
- -real time midi synthetiser
- -pretty polyphonic management
- -virgule fixe processing
- -midi pitch bend, modulation and volume control
- -ADSR enveloppe
- -square and triangle oscillators with variable symetrie
+ - real time midi synthetiser
+ - polyphonic management
+ - virgule fixe processing
 
-edit source code for more...
+
 
 EXEMPLE:
 
@@ -54,7 +51,7 @@ instru pouet
 		out buffer audio_output;
 	}
 	process voice=carre(value paramX:...);	#creation, initialisation et affectation
-	process global							#creation, definition, affectation
+	process global				#creation, definition, affectation
 	{
 		data
 		{
@@ -76,14 +73,6 @@ instru pouet
 		process_voices(mixer:log, param1:42, output:audio_output);
 	}
 }
-
-
-
-
-
-
-
-
 
 ======END OF THE INSTRUMENT DESCRIPTION======
 Object will be needed to be able to change their states.
@@ -140,3 +129,24 @@ modules are processed, affects are done and callback are called.
 mixing
 audio_writing
 
+
+que ca soit un piano, un orgue ou une guitare qui est syth'etis'e, on
+a des ressources limit'ees qui sont les cordes (6 ou 88), les tubes
+(un ou plein).
+
+ - La polyphonie dans ce cas consiste a activer ou non ces resources. -
+
+Si on se trouve dans le cas ou l'on a plus de contraintes fixes, on
+peux creer les resources suivant les besoins.
+
+ - La polyphonie dans ce cas consiste a r'epliquer les ressources autant
+de fois que necessaire. -
+
+
+
+
+Maintenant, on recois des notes a jouer avec une certaine velocit'ee,
+et eventuellement certains parametres.
+
+Quand on recois une note, dans le ca dur, ou utilise les ressources
+dispo ou sinon, on cree les resources.

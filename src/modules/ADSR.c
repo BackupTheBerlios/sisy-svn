@@ -21,11 +21,11 @@ struct module_ADSR_class_s {
 };
 
 typedef struct {
-    int A, D, S, R, ref, trigger, env;
+    int A, D, S, R, ref, trigger, out;
 } ADSR_IO_t;
 
 static symbole_t IO_symtab[]={
-    {"env",	OFFSET(ADSR_IO_t, env),		SIAD_SCOPE_OUT, SIAD_TYPE_VALUE},
+    {"env_out",	OFFSET(ADSR_IO_t, out),		SIAD_SCOPE_OUT, SIAD_TYPE_VALUE},
     {"trigger",	OFFSET(ADSR_IO_t, trigger),	SIAD_SCOPE_IN,  SIAD_TYPE_VALUE},
     {"ref",	OFFSET(ADSR_IO_t, ref),		SIAD_SCOPE_IN,  SIAD_TYPE_VALUE},
     {"A",	OFFSET(ADSR_IO_t, A),		SIAD_SCOPE_IN,  SIAD_TYPE_VALUE},
@@ -212,7 +212,7 @@ process(module_ADSR_t *ADSR, int size)
 		}
 	}
 
-    ADSR->IO.env = ADSR->pos;
+    ADSR->IO.out = ADSR->pos;
     return 0;
 }
 

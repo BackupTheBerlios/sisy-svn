@@ -67,8 +67,6 @@ LDFLAGS = @LDFLAGS@
 LEX = @LEX@
 LEXLIB = @LEXLIB@
 LEX_OUTPUT_ROOT = @LEX_OUTPUT_ROOT@
-LIBFMS_CFLAGS = @LIBFMS_CFLAGS@
-LIBFMS_LIBS = @LIBFMS_LIBS@
 LIBOBJS = @LIBOBJS@
 LIBS = @LIBS@
 LIBSNDFILE_CFLAGS = @LIBSNDFILE_CFLAGS@
@@ -87,6 +85,8 @@ PKG_CONFIG = @PKG_CONFIG@
 RANLIB = @RANLIB@
 SET_MAKE = @SET_MAKE@
 SHELL = @SHELL@
+SIMILI_CFLAGS = @SIMILI_CFLAGS@
+SIMILI_LIBS = @SIMILI_LIBS@
 STRIP = @STRIP@
 VERSION = @VERSION@
 YACC = @YACC@
@@ -132,9 +132,9 @@ RECURSIVE_TARGETS = info-recursive dvi-recursive pdf-recursive \
 	all-recursive install-data-recursive install-exec-recursive \
 	installdirs-recursive install-recursive uninstall-recursive \
 	check-recursive installcheck-recursive
-DIST_COMMON = README $(srcdir)/Makefile.in $(srcdir)/configure COPYING \
-	ChangeLog INSTALL Makefile.am NEWS TODO aclocal.m4 compile \
-	config.guess config.sub configure configure.in depcomp \
+DIST_COMMON = README $(srcdir)/Makefile.in $(srcdir)/configure AUTHORS \
+	COPYING ChangeLog INSTALL Makefile.am NEWS TODO aclocal.m4 \
+	compile config.guess config.sub configure configure.in depcomp \
 	install-sh missing mkinstalldirs
 DIST_SUBDIRS = $(SUBDIRS)
 all: all-recursive

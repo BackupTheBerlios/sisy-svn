@@ -31,7 +31,7 @@ AC_SUBST([INCLUDEDIR])
 
 CFLAGS="$CFLAGS -Wall -O3"
 
-PKG_CHECK_MODULES(LIBFMS, libfms >= 0.1.0, , AC_MSG_ERROR(*** libfms (LIBrary For Midi Stuff) not found))
+PKG_CHECK_MODULES(SIMILI, simili >= 0.1.0, , AC_MSG_ERROR(*** simili (SImple MIdi LIbrary) not found))
 PKG_CHECK_MODULES(LIBSNDFILE, sndfile >= 0.15.0, , AC_MSG_ERROR(*** libsndfile >= 0.15.0 not found and not tested with previous versions))
 PKG_CHECK_MODULES(GTK2, gtk+-2.0 >= 2.0.0)
 

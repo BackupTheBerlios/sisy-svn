@@ -309,7 +309,7 @@ ac_includes_default="\
 # include <unistd.h>
 #endif"
 
-ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS INSTALL_PROGRAM INSTALL_SCRIPT INSTALL_DATA CYGPATH_W PACKAGE VERSION ACLOCAL AUTOCONF AUTOMAKE AUTOHEADER MAKEINFO AMTAR install_sh STRIP ac_ct_STRIP INSTALL_STRIP_PROGRAM AWK SET_MAKE am__leading_dot CC CFLAGS LDFLAGS CPPFLAGS ac_ct_CC EXEEXT OBJEXT DEPDIR am__include am__quote AMDEP_TRUE AMDEP_FALSE AMDEPBACKSLASH CCDEPMODE am__fastdepCC_TRUE am__fastdepCC_FALSE RANLIB ac_ct_RANLIB YACC LEX LEXLIB LEX_OUTPUT_ROOT CPP EGREP INCLUDEDIR PKG_CONFIG LIBFMS_CFLAGS LIBFMS_LIBS LIBSNDFILE_CFLAGS LIBSNDFILE_LIBS GTK2_CFLAGS GTK2_LIBS LIBOBJS LTLIBOBJS'
+ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS INSTALL_PROGRAM INSTALL_SCRIPT INSTALL_DATA CYGPATH_W PACKAGE VERSION ACLOCAL AUTOCONF AUTOMAKE AUTOHEADER MAKEINFO AMTAR install_sh STRIP ac_ct_STRIP INSTALL_STRIP_PROGRAM AWK SET_MAKE am__leading_dot CC CFLAGS LDFLAGS CPPFLAGS ac_ct_CC EXEEXT OBJEXT DEPDIR am__include am__quote AMDEP_TRUE AMDEP_FALSE AMDEPBACKSLASH CCDEPMODE am__fastdepCC_TRUE am__fastdepCC_FALSE RANLIB ac_ct_RANLIB YACC LEX LEXLIB LEX_OUTPUT_ROOT CPP EGREP INCLUDEDIR PKG_CONFIG SIMILI_CFLAGS SIMILI_LIBS LIBSNDFILE_CFLAGS LIBSNDFILE_LIBS GTK2_CFLAGS GTK2_LIBS LIBOBJS LTLIBOBJS'
 ac_subst_files=''
 
 # Initialize some variables set by options.
@@ -4113,31 +4113,31 @@ fi
   else
      PKG_CONFIG_MIN_VERSION=0.9.0
      if $PKG_CONFIG --atleast-pkgconfig-version $PKG_CONFIG_MIN_VERSION; then
-        echo "$as_me:$LINENO: checking for libfms >= 0.1.0" >&5
-echo $ECHO_N "checking for libfms >= 0.1.0... $ECHO_C" >&6
+        echo "$as_me:$LINENO: checking for simili >= 0.1.0" >&5
+echo $ECHO_N "checking for simili >= 0.1.0... $ECHO_C" >&6
 
-        if $PKG_CONFIG --exists "libfms >= 0.1.0" ; then
+        if $PKG_CONFIG --exists "simili >= 0.1.0" ; then
             echo "$as_me:$LINENO: result: yes" >&5
 echo "${ECHO_T}yes" >&6
             succeeded=yes
 
-            echo "$as_me:$LINENO: checking LIBFMS_CFLAGS" >&5
-echo $ECHO_N "checking LIBFMS_CFLAGS... $ECHO_C" >&6
-            LIBFMS_CFLAGS=`$PKG_CONFIG --cflags "libfms >= 0.1.0"`
-            echo "$as_me:$LINENO: result: $LIBFMS_CFLAGS" >&5
-echo "${ECHO_T}$LIBFMS_CFLAGS" >&6
+            echo "$as_me:$LINENO: checking SIMILI_CFLAGS" >&5
+echo $ECHO_N "checking SIMILI_CFLAGS... $ECHO_C" >&6
+            SIMILI_CFLAGS=`$PKG_CONFIG --cflags "simili >= 0.1.0"`
+            echo "$as_me:$LINENO: result: $SIMILI_CFLAGS" >&5
+echo "${ECHO_T}$SIMILI_CFLAGS" >&6
 
-            echo "$as_me:$LINENO: checking LIBFMS_LIBS" >&5
-echo $ECHO_N "checking LIBFMS_LIBS... $ECHO_C" >&6
-            LIBFMS_LIBS=`$PKG_CONFIG --libs "libfms >= 0.1.0"`
-            echo "$as_me:$LINENO: result: $LIBFMS_LIBS" >&5
-echo "${ECHO_T}$LIBFMS_LIBS" >&6
+            echo "$as_me:$LINENO: checking SIMILI_LIBS" >&5
+echo $ECHO_N "checking SIMILI_LIBS... $ECHO_C" >&6
+            SIMILI_LIBS=`$PKG_CONFIG --libs "simili >= 0.1.0"`
+            echo "$as_me:$LINENO: result: $SIMILI_LIBS" >&5
+echo "${ECHO_T}$SIMILI_LIBS" >&6
         else
-            LIBFMS_CFLAGS=""
-            LIBFMS_LIBS=""
+            SIMILI_CFLAGS=""
+            SIMILI_LIBS=""
             ## If we have a custom action on failure, don't print errors, but
             ## do set a variable so people can do so.
-            LIBFMS_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "libfms >= 0.1.0"`
+            SIMILI_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "simili >= 0.1.0"`
 
         fi
 
@@ -4152,8 +4152,8 @@ echo "${ECHO_T}$LIBFMS_LIBS" >&6
   if test $succeeded = yes; then
      :
   else
-     { { echo "$as_me:$LINENO: error: *** libfms (LIBrary For Midi Stuff) not found" >&5
-echo "$as_me: error: *** libfms (LIBrary For Midi Stuff) not found" >&2;}
+     { { echo "$as_me:$LINENO: error: *** simili (SImple MIdi LIbrary) not found" >&5
+echo "$as_me: error: *** simili (SImple MIdi LIbrary) not found" >&2;}
    { (exit 1); exit 1; }; }
   fi
 
@@ -5042,8 +5042,8 @@ s,@CPP@,$CPP,;t t
 s,@EGREP@,$EGREP,;t t
 s,@INCLUDEDIR@,$INCLUDEDIR,;t t
 s,@PKG_CONFIG@,$PKG_CONFIG,;t t
-s,@LIBFMS_CFLAGS@,$LIBFMS_CFLAGS,;t t
-s,@LIBFMS_LIBS@,$LIBFMS_LIBS,;t t
+s,@SIMILI_CFLAGS@,$SIMILI_CFLAGS,;t t
+s,@SIMILI_LIBS@,$SIMILI_LIBS,;t t
 s,@LIBSNDFILE_CFLAGS@,$LIBSNDFILE_CFLAGS,;t t
 s,@LIBSNDFILE_LIBS@,$LIBSNDFILE_LIBS,;t t
 s,@GTK2_CFLAGS@,$GTK2_CFLAGS,;t t

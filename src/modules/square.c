@@ -1,3 +1,9 @@
+/* Square module.
+ * T: frequence
+ * Level: amplitude, if negative, nothing
+ */
+
+
 #include "../module.h"
 #include "../audio.h"
 #include "../bank.h"
@@ -11,14 +17,14 @@ static module_t *clone (module_square_t*);
 
 
 struct module_square_class_s {
-  module_c module;
+    module_c module;
 };
 
 
 typedef struct {
-  //  trigger_t *trig;
-  buffer_t *out;
-  int T, level, RC;
+    //  trigger_t *trig;
+    buffer_t *out;
+    int T, level, RC;
 } square_IO_t;
 
 
@@ -33,17 +39,17 @@ static symbole_t IO_symtab[]={
 obj_c*
 module_square_class()
 {
-  static obj_c *class=0;
+    static obj_c *class=0;
 
-  if(!class)
-    {
-      create_class(module_square, module);
-      class->destroy = (obj_destroy_t*)destroy;
-      MODULE_CLASS(class)->process = (module_process_t*)process;
-      MODULE_CLASS(class)->clone = (module_clone_t*)clone;
-    }
+    if(!class)
+	{
+	    create_class(module_square, module);
+	    class->destroy = (obj_destroy_t*)destroy;
+	    MODULE_CLASS(class)->process = (module_process_t*)process;
+	    MODULE_CLASS(class)->clone = (module_clone_t*)clone;
+	}
 
-  return class;
+    return class;
 }
 
 
@@ -81,30 +87,29 @@ level_callback(module_square_t * const square)
 module_t*
 module_square_create()
 {
-  module_square_t * square=0;
+    module_square_t * square=0;
+    //  printf("module_square_create\n");
 
-  //  printf("module_square_create\n");
+    square = obj_create(module_square);
+    MODULE(square)->IO.name = "square IO";
+    MODULE(square)->IO.size = sizeof(square_IO_t);
+    MODULE(square)->IO.data = &square->IO;
+    MODULE(square)->IO.symtab = IO_symtab;
+    //  BANK_INIT(&MODULE(square)->IO, &square->IO, square_IO_t);
 
-  square = obj_create(module_square);
-  MODULE(square)->IO.name = "square IO";
-  MODULE(square)->IO.size = sizeof(square_IO_t);
-  MODULE(square)->IO.data = &square->IO;
-  MODULE(square)->IO.symtab = IO_symtab;
-  //  BANK_INIT(&MODULE(square)->IO, &square->IO, square_IO_t);
-
-  ck_err(bank_add_watch(&MODULE(square)->IO, "T",	(siad_callback_t)T_callback, square) < 0);
-  ck_err(bank_add_watch(&MODULE(square)->IO, "level",	(siad_callback_t)level_callback, square) < 0);
+    ck_err(bank_add_watch(&MODULE(square)->IO, "T",	(siad_callback_t)T_callback, square) < 0);
+    ck_err(bank_add_watch(&MODULE(square)->IO, "level",	(siad_callback_t)level_callback, square) < 0);
  
-  return MODULE(square);
+    return MODULE(square);
   error:
-  return 0;
+    return 0;
 }
 
 
 module_t*
 clone(module_square_t *square)
 {
-  return module_square_create();
+    return module_square_create();
 }
 
 
@@ -118,7 +123,7 @@ process(module_square_t * const square, int size)
     buffer = square->IO.out->smpl;
     ck_err(size != square->IO.out->size);
 
-    if(!square->RC)
+    if(!square->RC || !square->level)
 	return 0;
 
     for (i = 0; i < size; i++)
@@ -181,6 +186,6 @@ process(module_square_t * const square, int size)
 int
 destroy(module_square_t *square)
 {
-   printf("destroy\n");
-   return 0;
+    printf("destroy\n");
+    return 0;
 }

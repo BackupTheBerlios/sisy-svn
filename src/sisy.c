@@ -30,13 +30,13 @@
 #include "audio.h"
 #include "timestamp.h"
 
-void*
-Malloc(int size)
-{
-    if(!size)
-	abort();
-    return calloc(size, 1);
-}
+/* void* */
+/* Malloc(int size) */
+/* { */
+/*     if(!size) */
+/* 	abort(); */
+/*     return calloc(size, 1); */
+/* } */
 
 //TODO : add instrument object
 unsigned int dbg_filter;
@@ -113,12 +113,13 @@ main (int ac, char **av)
 	    int t;
 	    done=1;
 	    ck_err(buffer_zero(sisy.buffer)<0);
+//	    printf("%d\r", midi_timestamp_get());
 	    for(t=0; t<sisy.nb_tracks; t++)
 		{
 		    sisy_track_t *track=&sisy.tracks[t];
 		    if(!track->EOT)
 			{
-			    done=0;
+			    done=0;//We are not done !
 			    ck_err(bank_push(&track->midi.bank));
 			    ck_err(buffer_zero(track->buffer) < 0);
 
@@ -148,6 +149,10 @@ main (int ac, char **av)
 
 #define BUFF_SIZE 65535
 static int
+/* TOC:
+ * process midi messages
+ * process audio messages
+ */
 sisy_track_process(sisy_track_t *track)
 {
     midi_msg_t mmsg;
@@ -328,7 +333,7 @@ sisy_midi_file_init(sisy_t *sisy, char *midi_device)
 			}
 		    ck_err(midi_put_msg(track->midi.midi, &mmsg) < 0);
 		}
-	    dbg(DBG_MIDI, "EOT\n");
+	    dbg(DBG_MIDI, "sisy_midi_file_init: EOT\n");
 	}
 
     midi_destroy(file);
