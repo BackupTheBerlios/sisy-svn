@@ -338,7 +338,8 @@ bank_clone(bank_t *src, bank_t *dst)
 {
 //    memcpy(dst, src, sizeof(bank_t));
     ck_err(dst->data);
-    ck_err(!(dst->data=Malloc(src->size)));
+    if(src->size)
+	ck_err(!(dst->data=Malloc(src->size)));
     ck_err(bank_copy(src, dst)<0);
     
     return 0;

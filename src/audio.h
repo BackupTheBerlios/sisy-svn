@@ -56,6 +56,7 @@ buffer_t *buffer_create();
 int buffer_zero(buffer_t*);
 int buffer_mix(buffer_t* , buffer_t*);
 int buffer_valeff(buffer_t*);
+int is_buffer_flat(buffer_t*);
 //#define SCAN_AUDIO_BUFFER
 
 #endif

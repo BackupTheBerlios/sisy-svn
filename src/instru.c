@@ -78,7 +78,7 @@ instru_create()
     instru->bank_IO.size = sizeof(instru_IO_t);
     instru->bank_IO.data = &instru->IO;
     instru->bank_IO.symtab = instru_IO_symtab;
-  
+
     ck_err(!(instru->buffer = buffer_create()));
     ck_err(instru_midi_init(&instru->midi) < 0);
     ck_err(instru_prog(instru, 0) < 0);
@@ -150,7 +150,7 @@ instru_voice_process(instru_voice_t * voice, int size)
     module_t *module;
     node_t *node;
 
-    dbg(DBG_PROC, "instru_process_voice");
+    dbg(DBG_PROC, "instru_voice_process");
     ck_err(instru_voice_midi_process(voice) < 0);
 
 #ifdef TIMEOUT
@@ -175,6 +175,9 @@ instru_voice_process(instru_voice_t * voice, int size)
     ck_err(bank_pop_check(&voice->bank_USER));
     ck_err(bank_pop_check(&voice->bank_IO));
     ck_err(bank_pop_check(&voice->midi.bank));
+
+/*     if(!is_buffer_flat(voice->IO.buffer)) */
+/* 	printf("instru_voice_process: buffer qui bouge\n"); */
 
     return 0;
   error:
@@ -204,11 +207,11 @@ instru_process(instru_t * instru, int size)
 		ck_err(buffer_mix(instru->voices[i].IO.buffer, instru->buffer) < 0);
 	}
 
-/*     if (instru->global.IO.buffer) { */
-/* 	ck_err(buffer_zero(instru->global.IO.buffer) < 0); */
-/* 	ck_err(instru_voice_process(&instru->global, size) < 0); */
-/* 	ck_err(buffer_mix(instru->global.IO.buffer, instru->buffer) < 0); */
-/*     } */
+    if (instru->global.IO.buffer) {
+	ck_err(buffer_zero(instru->global.IO.buffer) < 0);
+	ck_err(instru_voice_process(&instru->global, size) < 0);
+	ck_err(buffer_mix(instru->global.IO.buffer, instru->buffer) < 0);
+    }
 
     ck_err(bank_pop_check(&instru->bank_USER));
     ck_err(bank_pop_check(&instru->bank_IO));
@@ -444,7 +447,7 @@ instru_prog(instru_t * instru, char prog)
     instru->midi.IO.program = prog;
     ck_err(!(name = prog_name(prog)));
     ck_err(!(name = instru_file_name(name, file_name, FILE_NAME_SIZE)));
-//æøå°x¢¢ÆÅØ×  if (dbg_filter & DBG_MIDI)
+//  if (dbg_filter & DBG_MIDI)
 	printf("instru_prog: prog #%x, file: %s\n", prog, name);
     //   abort();
     ck_err(instru_parse(instru, name) < 0);

@@ -118,7 +118,7 @@ process(module_square_t * const square, int size)
     buffer = square->IO.out->smpl;
     ck_err(size != square->IO.out->size);
 
-    if(!square->level)
+    if(!square->RC)
 	return 0;
 
     for (i = 0; i < size; i++)
@@ -127,8 +127,8 @@ process(module_square_t * const square, int size)
 	    if ((square->t+=1024) >= (square->RC))
 		{
 		    square->t -= square->RC;
-//		    buffer[i] = (square->level * square->t) >> 10;
-		    buffer[i] = square->level;
+		    buffer[i] = (square->level * square->t) >> 10;
+//		    buffer[i] = square->level;
 		    square->level *= -1;
 //		    printf("square: %p, %d, Alternation: RC: %d, level: %d, t: %d\n", square, i, square->RC, square->level, square->t);
 		}

@@ -7,7 +7,7 @@
 int
 audio_file_write(audio_t *audio, short int *buffer, int size)
 {
-  ck_err (sf_writef_short(audio->data.p, buffer, size) != size);
+  ck_err (sf_writef_short(audio->data.p, buffer, size/2) != size);
 
   return 0;
  error:

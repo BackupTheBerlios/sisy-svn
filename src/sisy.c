@@ -30,6 +30,14 @@
 #include "audio.h"
 #include "timestamp.h"
 
+void*
+Malloc(int size)
+{
+    if(!size)
+	abort();
+    return calloc(size, 1);
+}
+
 //TODO : add instrument object
 unsigned int dbg_filter;
 
@@ -41,9 +49,9 @@ static int sisy_midi_alsa_init(sisy_t*, char*);
 static int sisy_track_process(sisy_track_t *track);
 
 char *midi_device = "alsa://sisy";
-//char *audio_device = "alsa://default";
+char *audio_device = "alsa://default";
 //char *audio_device = "file://pouet.au";
-char *audio_device = "oss:///dev/dsp";
+//char *audio_device = "oss:///dev/dsp";
 int midi_file_track=-1;
 
 
@@ -75,7 +83,7 @@ main (int ac, char **av)
 
     sisy_getopt(ac, av);
 
-    instru_path[instru_path_size] = Malloc(strlen(getenv("HOME")) + strlen("/.sisy/"));
+    instru_path[instru_path_size] = Malloc(strlen(getenv("HOME")) + strlen("/.sisy/") + 200);
     strcat(instru_path[instru_path_size], getenv("HOME"));
     strcat(instru_path[instru_path_size++], "/.sisy/");
     instru_path[instru_path_size++] = "/usr/share/sisy/";
@@ -120,6 +128,10 @@ main (int ac, char **av)
 			    ck_err(buffer_mix(track->buffer, sisy.buffer));
 			}
 		}
+	    
+/* 	    if(!is_buffer_flat(sisy.buffer)) */
+/* 		printf("sisy: buffer qui bouge\n"); */
+
 	    ck_err(audio_write(&audio, sisy.buffer)<0);
 	}
 
@@ -215,6 +227,8 @@ sisy_track_process(sisy_track_t *track)
 		    ck_err(buffer_mix(chan->buffer, track->buffer));
 		}
 	}
+/*     if(!is_buffer_flat(track->buffer)) */
+/* 	printf("sisy_track_process: buffer qui bouge\n"); */
 
     return 0;
   error:
@@ -335,7 +349,7 @@ sisy_getopt(int ac, char **av)
 	    //	int this_option_optind = optind ? optind : 1;
 	    int option_index = 0;
 	    struct option long_options[] = {
-		{"help", 1, 0, 'h'},
+		{"help", 0, 0, 'h'},
 		{"audio_dev", 1, 0, 'a'},
 		{"debug", 1, 0, 'd'},
 		{0, 0, 0, 0}
