@@ -1,0 +1,142 @@
+SImple SYnthetiser
+------------------
+
+FEATURES:
+ -real time midi synthetiser
+ -pretty polyphonic management
+ -virgule fixe processing
+ -midi pitch bend, modulation and volume control
+ -ADSR enveloppe
+ -square and triangle oscillators with variable symetrie
+
+edit source code for more...
+
+EXEMPLE:
+
+This is an exemple of instrument description. It will change soon.
+
+======BEGINING OF THE INSTRUMENT DESCRIPTION======
+instru carre {
+	data {
+	        value polyphony_nb_voices=2;
+	}
+	voice {
+		data {
+			new buffer tmp;
+		}
+		square(T:midi_note_period, buff:tmp, level:midi_velo);
+		envolope(buff:tmp, duration:midi_note_duration);
+	}
+}
+======END OF THE INSTRUMENT DESCRIPTION======
+
+In the future, there will have event handling and procedures:
+======BEGINING OF THE INSTRUMENT DESCRIPTION======
+module carre
+{
+	process
+	{
+		data
+		{
+			in value param1=42;//with range(0,42);
+			in fixed freq(min:42, max:21000, default:42, precision:4);
+			out buffer output;
+		}
+		square(T:freq, buff:pouet);
+	}
+}
+
+instru pouet
+{
+	data
+	{
+		in value voices_nb=42;
+		out buffer audio_output;
+	}
+	process voice=carre(value paramX:...);	#creation, initialisation et affectation
+	process global							#creation, definition, affectation
+	{
+		data
+		{
+			value tmp;
+			in value volume=42;
+		}
+		event voice
+		{
+			data
+			{
+				in value note;
+				in value velocity;
+				in value cord;
+			}
+			note2freq(note:note, freq:freq);
+			sound_bank_load(position:cord, output:sound);
+			create_voice(freq:freq);
+		}
+		process_voices(mixer:log, param1:42, output:audio_output);
+	}
+}
+
+
+
+
+
+
+
+
+
+======END OF THE INSTRUMENT DESCRIPTION======
+Object will be needed to be able to change their states.
+
+creation de voix
+reception d'events
+events routés par voix
+
+Systeme|Instrument|Note
+
+
+...
+
+Wave forms: Sin, Square, Noise, Table(Base64), Whatever...
+Enveloppe: ADSR, Whatever...
+Filters: Low, High, Whatever...
+Mixer: Whatever...
+
+PIANO:WaForms+Env
+CHROM_PERCUSSION:WaForms+Env
+ORGAN:WaForms+Env+Mixer
+GUITAR:WaForms+Env+Reverb
+BASS:WaForms+Env
+STRINGS:WaForms+Env
+ENSEMBLE:WaForms+Env
+BRASS:WaForms+Env
+REED:WaForms+Env
+PIPE:WaForms+Env
+SYNTH_LEAD:WaForms+Env
+SYNTH_PAD
+SYNTH_EFFECTS
+ETHNIC:?
+PERCUSSIVE:Samples?:Noise
+SOUND_EFFECTS:Samples
+
+Integration to gstreamer ? What's that ?
+
+...
+
+View_sound: add spectrum.
+
+INTERNALS:
+
+INIT:
+sisy load a file in a midi pipe or open a port.
+for each chan, an instru is loaded, sisy.conf is parsed.
+instru are build, voices are copied as affects and watches.
+IO data are cloned.
+
+PROCESS
+sisy read on the port and dispatch the midi mesages on chans.
+the chans fill the the instru, voices and midi IOs banks.
+modules are processed, affects are done and callback are called.
+mixing
+audio_writing
+

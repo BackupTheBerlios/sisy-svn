@@ -1,0 +1,9 @@
+Change pull data mode in push data mode: 30% perf wins with light instruments.
+Reuse buffers for voices...
+Use enable flag for voices...
+Add treshold and timeout setting to voice and instru to unable voices plus
+Try to parallelyze module exec to maybe optimise code cache.
+Ressource files in /etc/ and ~/.sisy
+Command line files spec
+usage() update
+CMakify:...

@@ -1,0 +1,21 @@
+voix:
+*buffer:S
+*values:P
+
+[sisy]
+Make gtk and libsndfile optionnal in the compilation.
+add types real and enum
+Make an envelope, sin and mixer plugin for additive synthesis: src/modules/*
+Change pull data mode in push data mode: 30% perf wins with light instruments.
+Reuse buffers for voices
+Use enable flag for voices
+Try to parallelise module exec to maybe optimise code cache.
+manage event in the scripts: src/instru(_parse)?.[hc]
+libify sisy to insert it in a global synthetiser: src/sisy.c
+Check the arg list of the modules calls: src/instru.c
+Found why the IO of the module is not cleared: src/module.c
+use LADSPA plugins: src/module.c
+FIX the view sound and ADSR.
+Write a midi control panel.
+Add float notation in files.
+Instruments !

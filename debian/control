@@ -1,0 +1,15 @@
+Source: sisy
+Section: sound
+Priority: optional
+Maintainer: Frederic Motte <faf.motte@laposte.net>
+Build-Depends: debhelper (>= 4.0.0)
+Standards-Version: 3.6.0
+
+Package: sisy
+Architecture: any
+Build-Depends: libfms0-dev
+Depends: libfms0 (>= 0.1.1), ${shlibs:Depends}, ${misc:Depends}
+Description: SImple SYnthetiser
+ Sisy is a midi polyphonic multi-instruments synthetiser.
+ The instruments are described by files and composed by simple modules.
+ 
